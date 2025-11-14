@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 /**
  * 统一异常处理类
  */
-@RestControllerAdvice("com.djdj.sect.controller")
+@RestControllerAdvice("com.daily.cost.controller")
 public class GlobalExceptionConfig {
 
     /**

@@ -18,7 +18,7 @@ import java.math.BigDecimal;
  */
 @SpringBootTest(args = "--spring.config.location=optional:classpath:application-local.yml,optional:classpath:application.yml")
 @Slf4j
-public class ISectServiceTest {
+public class IUserServiceTest {
 
     @Resource
     private IUserService userService;

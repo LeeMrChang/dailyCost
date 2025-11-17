@@ -1,7 +1,5 @@
 package com.daily.cost.dto;
 
-import com.fasterxml.jackson.databind.PropertyNamingStrategies;
-import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.Setter;
@@ -22,7 +20,6 @@ import java.util.Date;
 @Setter
 @Accessors(chain = true)
 @Schema(description = "借贷记录表 DTO")
-@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class LoanRecordDto {
 
     @Schema(description = "主键id")

@@ -4,6 +4,7 @@ import cn.hutool.core.bean.BeanUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.daily.cost.controller.req.UserLoginReq;
 import com.daily.cost.controller.req.UserQueryReq;
 import com.daily.cost.controller.resp.Result;
 import com.daily.cost.dto.UserDto;
@@ -15,6 +16,8 @@ import jakarta.annotation.Resource;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import java.math.BigDecimal;
 
 /**
  * <p>
@@ -61,12 +64,26 @@ public class UserController {
         return Result.success(dtoPage);
     }
 
-    @Operation(summary = "新增用户")
-    @PostMapping("/save")
-    public Result<Void> save(@Validated @RequestBody UserDto dto) {
+    @Operation(summary = "用户登录（支持昵称或手机号）")
+    @PostMapping("/login")
+    public Result<UserDto> login(@Validated @RequestBody UserLoginReq req) {
+        LambdaQueryWrapper<User> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(User::getPassword, req.getPassword())
+                .eq(User::getPhoneNumber, req.getPhoneNumber());
+        User user = userService.getOne(wrapper, false);
+        if (user == null) {
+            return Result.fail("账号或密码错误");
+        }
+        return Result.success(BeanUtil.copyProperties(user, UserDto.class));
+    }
+
+    @Operation(summary = "注册用户")
+    @PostMapping("/register")
+    public Result<UserDto> register(@Validated @RequestBody UserDto dto) {
         User user = BeanUtil.copyProperties(dto, User.class);
+        user.setTotalAssets(BigDecimal.TEN);//注册是默认给10资产
         boolean success = userService.save(user);
-        return success ? Result.success("新增成功") : Result.fail("新增失败");
+        return success ? Result.success(BeanUtil.copyProperties(user, UserDto.class)) : Result.fail("注册失败");
     }
 
     @Operation(summary = "更新用户")

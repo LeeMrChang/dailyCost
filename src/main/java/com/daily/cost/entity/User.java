@@ -43,6 +43,12 @@ public class User extends Model<User> {
     private String realName;
 
     /**
+     * 密码
+     */
+    @TableField("password")
+    private String password;
+
+    /**
      * 身份证号码
      */
     @TableField("id_card_number")
@@ -55,7 +61,7 @@ public class User extends Model<User> {
     private String profile;
 
     /**
-     * 性别，0表示未知，1表示男性，2表示女性
+     * 性别，0表示-男；1-表示女
      */
     @TableField("gender")
     private Short gender;

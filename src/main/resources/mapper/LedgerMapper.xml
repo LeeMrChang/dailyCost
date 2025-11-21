@@ -6,8 +6,9 @@
     <resultMap id="BaseResultMap" type="com.daily.cost.entity.Ledger">
         <id column="id" property="id" />
         <result column="user_id" property="userId" />
-        <result column="icon_id" property="iconId" />
         <result column="name" property="name" />
+        <result column="budget" property="budget" />
+        <result column="category" property="category" />
         <result column="remark" property="remark" />
         <result column="is_default" property="isDefault" />
         <result column="create_id" property="createId" />

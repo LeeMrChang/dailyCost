@@ -45,7 +45,7 @@ public class LedgerController {
     }
 
     @Operation(summary = "分页查询账本列表")
-    @GetMapping("/page")
+    @PostMapping("/page")
     public Result<Page<LedgerDto>> page(@Validated  @RequestBody LedgerQueryReq req) {
         Page<Ledger> page = Page.of(req.getCurrent(), req.getSize());
         LambdaQueryWrapper<Ledger> wrapper = new LambdaQueryWrapper<>();
@@ -72,7 +72,7 @@ public class LedgerController {
     }
 
     @Operation(summary = "新增账本")
-    @PostMapping
+    @PostMapping("/save")
     public Result<Void> save(@Validated @RequestBody LedgerDto dto) {
         Ledger ledger = BeanUtil.copyProperties(dto, Ledger.class);
         boolean success = ledgerService.save(ledger);

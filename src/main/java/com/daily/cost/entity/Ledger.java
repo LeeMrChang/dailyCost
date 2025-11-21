@@ -7,6 +7,7 @@ import lombok.Setter;
 import lombok.experimental.Accessors;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 
 /**
@@ -36,16 +37,22 @@ public class Ledger extends Model<Ledger> {
     private Long userId;
 
     /**
-     * 图标id(t_icon.id)
-     */
-    @TableField("icon_id")
-    private Long iconId;
-
-    /**
      * 账本名称
      */
     @TableField("name")
     private String name;
+
+    /**
+     * 预算
+     */
+    @TableField("budget")
+    private BigDecimal budget;
+
+    /**
+     * 分类
+     */
+    @TableField("category")
+    private Short category;
 
     /**
      * 备注

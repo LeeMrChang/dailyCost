@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
-import java.util.Date;
+import java.math.BigDecimal;
 
 /**
  * <p>
@@ -27,27 +27,18 @@ public class LedgerDto {
     @Schema(description = "用户id(t_user.id)")
     private Long userId;
 
-    @Schema(description = "图标id(t_icon.id)")
-    private Long iconId;
-
     @Schema(description = "账本名称")
     private String name;
+
+    @Schema(description = "预算")
+    private BigDecimal budget;
+
+    @Schema(description = "分类(1-个人，2-家庭，3-旅行，4-商务)")
+    private Short category;
 
     @Schema(description = "备注")
     private String remark;
 
     @Schema(description = "是否默认账本：0-否；1-是")
     private Boolean isDefault;
-
-    @Schema(description = "创建人")
-    private Long createId;
-
-    @Schema(description = "创建时间")
-    private Date createTime;
-
-    @Schema(description = "更新人")
-    private Long updateId;
-
-    @Schema(description = "更新时间")
-    private Date updateTime;
 }

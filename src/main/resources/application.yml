@@ -1,6 +1,14 @@
 server:
   port: 9001
-
+  tomcat:
+    connection-timeout: 300000
+  servlet:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+      force-request: true
+      force-response: true
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -62,6 +70,14 @@ spring:
     publisher-confirm-type: correlated
     #确认消息已发送到队列(Queue)
     publisher-returns: true
+  ai:
+    ollama:
+      base-url: http://localhost:11434
+      chat:
+        options:
+          model: qwen2.5:14b
+          temperature: 0.7
+  mandatory-file-encoding: UTF-8
 management:
   endpoint:
     health:

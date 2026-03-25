@@ -6,6 +6,8 @@ public class RedisConstant {
 
     private RedisConstant() {}
 
+    /**5000毫秒*/
+    public static final Integer M_SEC_5000 = 5000;
     /**5秒*/
     public static final Integer SEC_5 = 5;
     /**10秒*/
